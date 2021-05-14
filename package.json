@@ -16,7 +16,5 @@
     "url": "https://github.com/hjdesigner/api-feedback-serverless/issues"
   },
   "homepage": "https://github.com/hjdesigner/api-feedback-serverless#readme",
-  "dependencies": {
-    "uuid": "^8.3.2"
-  }
+  "dependencies": {}
 }

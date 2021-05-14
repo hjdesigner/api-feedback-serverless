@@ -16,5 +16,9 @@
     "url": "https://github.com/hjdesigner/api-feedback-serverless/issues"
   },
   "homepage": "https://github.com/hjdesigner/api-feedback-serverless#readme",
-  "dependencies": {}
+  "dependencies": {
+    "aws-sdk": "^2.906.0",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^7.0.0"
+  }
 }

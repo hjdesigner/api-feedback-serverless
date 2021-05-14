@@ -1,6 +1,22 @@
 service: api-feedback-serverless
 frameworkVersion: '2'
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8005
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      convertEmptyValues: true
+
 provider:
   name: aws
   region: us-east-1

@@ -1,7 +1,6 @@
 'use strict';
 
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const dynamodb = require('../infra/dynamodb');
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
@@ -19,7 +18,7 @@ module.exports.create = (event, context, callback) => {
     }
   }
 
-  dynamoDb.put(params, (error) => {
+  dynamodb.put(params, (error) => {
     if (error) {
       console.error(error);
       callback(null, {

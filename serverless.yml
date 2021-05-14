@@ -3,18 +3,41 @@ frameworkVersion: '2'
 
 provider:
   name: aws
+  region: us-east-1
   runtime: nodejs12.x
+  stage: dev
   lambdaHashingVersion: 20201221
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1"
 
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - package.json
+    - package-lock.json
 
 functions:
-  hello:
-    handler: handler.hello
+  apiFeedback:
+    handler: routes/create.create
+    events:
+      - http:
+          path: feedback
+          method: post
+          cors: true
 
 resources:
   Resources:
     TodosDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
+      Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
         AttributeDefinitions:
@@ -26,5 +49,5 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: feedback
+        TableName: 'feedback'
     
